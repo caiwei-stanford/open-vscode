@@ -1,4 +1,5 @@
 // Turn the part of the link after "#" into a vscode://file/ URL, or null if it is not an absolute path.
+// windowId=_blank makes VS Code open the folder in a new window instead of replacing the current one.
 function vscodeUrl(hash) {
   var path;
   try {
@@ -9,7 +10,7 @@ function vscodeUrl(hash) {
   if (!/^\/[^\u0000-\u001f\u007f]*$/.test(path)) {
     return null;
   }
-  return "vscode://file" + path.split("/").map(encodeURIComponent).join("/");
+  return "vscode://file" + path.split("/").map(encodeURIComponent).join("/") + "?windowId=_blank";
 }
 
 if (typeof module !== "undefined") {
